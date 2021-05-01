@@ -1,22 +1,23 @@
 # -*- coding: utf-8 -*-
-import base64
+import os
 import secrets
+import string
+
+print('Hello! This program is for creating cryptographic passwords.')
 
 try:
-	login = input('Введите Ваш логин:')
-	password = ''.join(str(secrets.randbelow(8)) for i in range(8))
-	print('Ваш пароль был создан, происходит криптошифрование Ваших данных')
-
-	login_obj = bytes(str(login), 'UTF-8')
-	login_enc = base64.standard_b64encode(login_obj)
-	print ('Ваш логин: ' + str(login_enc))
-
-	password_obj = bytes(str(password), 'UTF-8')
-	password_enc = base64.standard_b64encode(password_obj)
-	print ('Ваш пароль: ' + str(password_enc))
-
-
+    login = str(input('Write your login: \n>'))
+    symbols = '!@#$%^&*'
+    alphabet = string.ascii_letters + string.digits + login + symbols
+    password = ''.join(secrets.choice(alphabet) for i in range(32))
 except Exception as e:
-	raise e
+    raise e
 
-input() 
+file = open('YourLogPass.txt', 'a+')
+file.write('\nYour login: ' + login + '\nYour password: ' + password)
+file.close()
+
+directory = os.getcwd()
+print(f'Thank you for using our program!'
+      f'\nYour data is stored at {directory} in file YourLogPass.txt',
+      '\nSave it in a safe place!')
