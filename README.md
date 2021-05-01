@@ -1,3 +1,3 @@
 # Cryptopassword
 
-Usefull program, but comfortable ^_^
+Useless program, but comfortable ^_^
